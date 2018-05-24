@@ -41,14 +41,17 @@ public class CustomAuthenticationProvider
 				throw new BadCredentialsException("Invalid Credentials");
 			}
 			
-		}else if(group.equalsIgnoreCase("TEACHER")) {
-	        Collection<GrantedAuthority> authorities=new ArrayList<GrantedAuthority>();
-	        authorities.add(new SimpleGrantedAuthority("TEACHER"));
+		}else if(group.equalsIgnoreCase("LECTURER")) {
+			System.out.println("Username:"+username+"\nPassword:"+password+"\nGroup:"+group);
+			
+			Collection<GrantedAuthority> authorities=new ArrayList<GrantedAuthority>();
+	        authorities.add(new SimpleGrantedAuthority("LECTURER"));
 	        User user=new User(username, password, authorities);
 	        authorities=user.getAuthorities();
 	        return new UsernamePasswordAuthenticationToken(user, password, authorities);
 
 		}else {
+			System.out.println("Username:"+username+"\nPassword:"+password+"\nGroup:"+group);
 			
 	        Collection<GrantedAuthority> authorities=new ArrayList<GrantedAuthority>();
 	        authorities.add(new SimpleGrantedAuthority("STUDENT"));

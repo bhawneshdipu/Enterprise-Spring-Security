@@ -26,9 +26,25 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		session.setAttribute("authorities", authentication.getAuthorities());
 		session.setAttribute("user", authUser);
 		httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-		
-		
-		httpServletResponse.sendRedirect("/admin");
-		return;
+		System.out.println("Username:"+authUser.getUsername());
+		System.out.println("ROLE:"+authUser.getAuthorities());
+		String role=authUser.getAuthorities().toString();
+		if(role.toUpperCase().indexOf("ADMIN")>=0) {
+			httpServletResponse.sendRedirect("/admin");
+			return;
+				
+		}else if(role.toUpperCase().indexOf("LECTURER")>=0) {
+			httpServletResponse.sendRedirect("/lecturer");
+			return;
+				
+		}else if(role.toUpperCase().indexOf("STUDENT")>=0) {
+			httpServletResponse.sendRedirect("/student");
+			return;
+				
+		}else {
+			httpServletResponse.sendRedirect("/login");
+			return;
+			
+		}
 	}
 }

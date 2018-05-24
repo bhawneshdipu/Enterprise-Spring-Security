@@ -27,11 +27,14 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		
 		http.authorizeRequests()
+				.antMatchers("/admin").hasAnyAuthority("ADMIN")
+				.antMatchers("/student").hasAnyAuthority("ADMIN","STUDENT")
+				.antMatchers("/lecturer").hasAnyAuthority("ADMIN","LECTURER")
 				.and().formLogin().loginPage("/login")
 				.successHandler(customAuthenticationSuccessHandler).failureHandler(customAuthenticationFailureHandler)
 				.permitAll()
 				.usernameParameter("email").passwordParameter("password")
-				.and().logout().logoutSuccessUrl("/login?logout");
+				.and().logout().logoutSuccessUrl("/login?logout").permitAll();
 		
 		http.authorizeRequests().anyRequest().fullyAuthenticated();
 		

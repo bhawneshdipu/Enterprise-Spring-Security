@@ -34,7 +34,7 @@
                     		<option value="" > Select</option>
                     		<option value="lecturer"> Lecturer</option>
                     		<option value="student">Student</option>
-                    		<option value="administrator">Administrator</option>
+                    		<option value="admin">Admin</option>
                     		
                     	</select>
                     </div>
