@@ -7,8 +7,19 @@
 <link rel="stylesheet" href="css/bootstrap.min.css"
 	type="text/css">
 <%@ page isELIgnored="false" %>
+<%@ page session="true" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 </head>
 <body>
+
+<%@include file="navigation.jsp"%>
+
 	<div class="text-center">
 		<img src="img/logo.jpg" alt="">
 	</div>

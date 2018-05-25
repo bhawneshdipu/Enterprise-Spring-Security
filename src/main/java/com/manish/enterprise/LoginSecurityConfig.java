@@ -28,8 +28,11 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 				.antMatchers("/admin").hasAnyAuthority("ADMIN")
+				.antMatchers("/admin/**").hasAnyAuthority("ADMIN")
 				.antMatchers("/student").hasAnyAuthority("ADMIN","STUDENT")
+				.antMatchers("/student/**").hasAnyAuthority("ADMIN","STUDENT")
 				.antMatchers("/lecturer").hasAnyAuthority("ADMIN","LECTURER")
+				.antMatchers("/lecturer/**").hasAnyAuthority("ADMIN","LECTURER")
 				.and().formLogin().loginPage("/login")
 				.successHandler(customAuthenticationSuccessHandler).failureHandler(customAuthenticationFailureHandler)
 				.permitAll()

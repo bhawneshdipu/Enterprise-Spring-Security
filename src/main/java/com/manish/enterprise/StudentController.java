@@ -15,7 +15,7 @@ import com.manish.dao.LecturerDao;
 import com.manish.dao.StudentDao;
 
 @Controller
-public class EnterpriseController {
+public class StudentController {
 	
 	@Autowired
 	DataSource mysqlDataSource;
@@ -41,35 +41,24 @@ public class EnterpriseController {
 	@Autowired
 	StudentDao studentDao;
 	
-	@RequestMapping("/")
-	String index() {
-		return "index";
-	}
-	@RequestMapping("/login")	
-	String login() {
-		return "login";
-	}
-	@RequestMapping("/admin")	
-	String admin() {
-		return "admin";
-	}
 	
-		
-	@RequestMapping("/lecturer")	
-	String lecturer() {
-		return "lecturer";
+	@RequestMapping("/student/enroll")	
+	String enroll() {
+		return "enroll";
 	}
-	
-	@RequestMapping("/student")	
-	String student() {
-		return "student";
+	@RequestMapping("/student/enroll/view")	
+	String enroll_view() {
+		return "enroll_add";
 	}
-	@RequestMapping("/about-us")	
-	String about_us() {
-		return "aboutus";
+	@RequestMapping("/student/enroll/add")	
+	String enroll_add() {
+		return "enroll_add";
 	}
 	
 	
-	
+	@RequestMapping("/student/assissment/view")	
+	String assissment_view() {
+		return "assissment_view";
+	}
 
 }

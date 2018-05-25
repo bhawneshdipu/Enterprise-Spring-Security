@@ -1,5 +1,7 @@
 package com.manish.model;
 
+import com.google.gson.Gson;
+
 public class Course {
 
 	int cid;
@@ -28,5 +30,8 @@ public class Course {
 		return "Course [cid=" + cid + ", title=" + title + ", prerequisites=" + prerequisites + "]";
 	}
 	
-	
+	public String toJSON() {
+		Gson gson=new Gson();
+		return gson.toJson(this);
+	}
 }

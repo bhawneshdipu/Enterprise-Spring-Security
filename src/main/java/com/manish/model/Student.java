@@ -2,12 +2,12 @@ package com.manish.model;
 
 public class Student {
 
-	int sid;
-	String fname;
-	String surname;
-	String email;
-	String major;
-	String password;
+	public int sid;
+	public String fname;
+	public String surname;
+	public String email;
+	public String major;
+	public String password;
 	public int getSid() {
 		return sid;
 	}

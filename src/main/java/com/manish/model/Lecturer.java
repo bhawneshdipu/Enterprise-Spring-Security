@@ -1,16 +1,16 @@
 package com.manish.model;
 
 public class Lecturer {
-	int lid;
-	String gname;
-	String surname;
-	String  email;
-	String password;
-	String campus;
-	public int getLId() {
+	public int lid;
+	public String gname;
+	public String surname;
+	public String  email;
+	public String password;
+	public String campus;
+	public int getLid() {
 		return lid;
 	}
-	public void setLId(int lid) {
+	public void setLid(int lid) {
 		this.lid = lid;
 	}
 	public String getGname() {

@@ -14,19 +14,23 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.google.gson.Gson;
 import com.manish.dao.AssessmentDao;
 import com.manish.dao.CourseAssessmentDao;
 import com.manish.dao.CourseConductionDao;
 import com.manish.dao.CourseDao;
 import com.manish.dao.EnrollmentDao;
+import com.manish.dao.LecturerDao;
 import com.manish.dao.StudentDao;
-import com.manish.model.LecturerDao;
 @Configuration
 public class EnterpriseBeans {
 	@Autowired
 	private Environment env;
 	
-	
+	@Bean
+	public Gson gson() {
+		return new Gson();
+	}
 	
 	 @Bean
 	 @Primary

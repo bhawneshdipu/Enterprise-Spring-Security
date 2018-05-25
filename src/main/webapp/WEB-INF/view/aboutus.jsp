@@ -9,9 +9,6 @@
 <%@ page isELIgnored="false" %>
 </head>
 <body>
-
-<%@include file="navigation.jsp"%>
-	
 	<div class="text-center">
 		<img src="img/logo.jpg" alt="">
 	</div>
@@ -19,7 +16,10 @@
 
 
 	<div class='col-lg-12'>
-student
+		<div class="col-lg-3"></div>
+		<div class="col-lg-5">
+		INDEX PAGE
+		</div>
 	</div>
 
 	<footer class="footer">
