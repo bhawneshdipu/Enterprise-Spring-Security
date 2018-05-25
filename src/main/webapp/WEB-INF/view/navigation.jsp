@@ -43,6 +43,25 @@
         </ul>
         
       </li>
+	 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assessment
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/admin/assessment/add">Add</a></li>
+          <li><a href="/admin/assessments">List</a></li>
+        </ul>
+        
+      </li>
+	
+	 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Course Assessment
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/admin/course_assessment/add">Add</a></li>
+          <li><a href="/admin/course_assessments">List</a></li>
+        </ul>
+        
+      </li>
 	
 	<li><a href="/about-us">About US</a></li>
     </ul>
