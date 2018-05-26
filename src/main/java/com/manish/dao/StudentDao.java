@@ -224,6 +224,39 @@ public class StudentDao {
 			return null;
 		}
 	}
+	public Student[] getLecturerStudents(int lid) {
+		String studentByLecturerPstmt="SELECT * FROM "+tableName+" JOIN enrollment using (sid) join course_conduction using (cid) WHERE LID=? ";
+		
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(studentByLecturerPstmt);
+			pstmt.setInt(1, lid);
+			System.out.println(studentByLecturerPstmt);
+			System.out.println(lid);
+
+			ResultSet rs=pstmt.executeQuery();
+			
+			List<Student> arr=new ArrayList<Student>();
+			while(rs.next()){
+				Student obj=new Student();
+				
+				obj.setSid(rs.getInt("SID"));
+				obj.setFname(rs.getString("FNAME"));
+				obj.setSurname(rs.getString("SURNAME"));
+				obj.setEmail(rs.getString("EMAIL"));
+				obj.setMajor(rs.getString("MAJOR"));
+				System.out.println(obj);
+				arr.add(obj);
+			}
+			rs.close();
+			return arr.toArray(new Student[arr.size()]);
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	
 	
 	

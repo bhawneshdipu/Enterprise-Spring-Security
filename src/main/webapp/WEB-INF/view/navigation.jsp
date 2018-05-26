@@ -111,6 +111,33 @@
       
     <c:if test="${sessionScope.role eq '[LECTURER]' }">
      
+     <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Courses
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/lecturer/courses">List</a></li>
+        </ul>
+        
+      </li>
+      
+     <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Courses Conduction
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/lecturer/course_conductions">List</a></li>
+        </ul>
+        
+      </li>
+       <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assessment
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/lecturer/assessment/add">Add</a></li>
+        
+          <li><a href="/lecturer/assessments">List</a></li>
+        </ul>
+        
+      </li>
      </c:if>  
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -128,8 +155,12 @@
  <%}else{ %>
       <li><a href="#"><%=session.getAttribute("username") %></a></li>
       <li><a href="#"><%=session.getAttribute("role") %></a></li>
-      <li><a href="#"><%=session.getAttribute("student_id") %></a></li>
- 
+      <c:if test="${sessionScope.role eq '[STUDENT]' }">
+     	<li><a href="#"><%=session.getAttribute("student_id") %></a></li>
+ 	  </c:if>
+ 	  <c:if test="${sessionScope.role eq '[LECTURER]' }">
+     	<li><a href="#"><%=session.getAttribute("lecturer_id") %></a></li>
+ 	  </c:if>
       <li><a href="/logout">Logout</a></li>
  
   <%} %>

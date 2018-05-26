@@ -147,5 +147,123 @@ public class CourseDao {
 		}
 	}
 	
+	public Course[] getBy(String column,String value){
+
+		String courseGetByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+"=? ";
+		
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(courseGetByPstmt);
+			pstmt.setString(1, value);
+			ResultSet rs=pstmt.executeQuery();
+			List<Course> arr=new ArrayList<Course>();
+			while(rs.next()){
+				Course obj=new Course();
+				
+				obj.setCid(rs.getInt("CID"));
+				obj.setTitle(rs.getString("TITLE"));
+				obj.setPrerequisites(rs.getString("PREREQUISITES"));
+				arr.add(obj);
+			}
+			rs.close();
+			return arr.toArray(new Course[arr.size()]);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+	
+
+	public Course[] getBy(String column,int value){
+
+		String courseGetByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+"=? ";
+		
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(courseGetByPstmt);
+			pstmt.setInt(1, value);
+			ResultSet rs=pstmt.executeQuery();
+			List<Course> arr=new ArrayList<Course>();
+			while(rs.next()){
+				Course obj=new Course();
+				
+				obj.setCid(rs.getInt("CID"));
+				obj.setTitle(rs.getString("TITLE"));
+				obj.setPrerequisites(rs.getString("PREREQUISITES"));
+				arr.add(obj);
+			}
+			rs.close();
+			return arr.toArray(new Course[arr.size()]);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+	
+	
+	public Course[] getLecturerCourseBy(String column,String value){
+
+		String courseGetByPstmt="SELECT * FROM "+tableName+" JOIN course_conduction USING (CID) WHERE "+column.toUpperCase()+"=? ";
+		
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(courseGetByPstmt);
+			pstmt.setString(1, value);
+			ResultSet rs=pstmt.executeQuery();
+			List<Course> arr=new ArrayList<Course>();
+			while(rs.next()){
+				Course obj=new Course();
+				
+				obj.setCid(rs.getInt("CID"));
+				obj.setTitle(rs.getString("TITLE"));
+				obj.setPrerequisites(rs.getString("PREREQUISITES"));
+				arr.add(obj);
+			}
+			rs.close();
+			return arr.toArray(new Course[arr.size()]);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+	
+
+	public Course[] getLecturerCourseBy(String column,int value){
+
+		String courseGetByPstmt="SELECT * FROM "+tableName+" JOIN course_conduction USING (cid) WHERE "+column.toUpperCase()+"=? ";
+		
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(courseGetByPstmt);
+			pstmt.setInt(1, value);
+			ResultSet rs=pstmt.executeQuery();
+			List<Course> arr=new ArrayList<Course>();
+			while(rs.next()){
+				Course obj=new Course();
+				
+				obj.setCid(rs.getInt("CID"));
+				obj.setTitle(rs.getString("TITLE"));
+				obj.setPrerequisites(rs.getString("PREREQUISITES"));
+				arr.add(obj);
+			}
+			rs.close();
+			return arr.toArray(new Course[arr.size()]);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
 	
 }

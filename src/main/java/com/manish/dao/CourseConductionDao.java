@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.manish.model.Course;
 import com.manish.model.CourseConduction;
 
 public class CourseConductionDao {
@@ -27,7 +28,7 @@ public class CourseConductionDao {
 		
 		public final String courseConductionInsertPstmt="INSERT INTO "+tableName+" ( "+insertValueList+")"+ "  VALUES ( "+values+" ) ";
 		
-		public final String courseConductionUpdatePstmt="UPDATE "+tableName+" SET "+updateValueList +" WHERE CAID=? ";
+		public final String courseConductionUpdatePstmt="UPDATE "+tableName+" SET "+updateValueList +" WHERE CCID=? ";
 		
 		public final String courseConductionFindPstmt="SELECT * FROM "+tableName+" WHERE CCID=? ";
 		
@@ -158,6 +159,74 @@ public class CourseConductionDao {
 				e.printStackTrace();
 				return -1;
 			}
+		}
+		
+		public CourseConduction[] getLecturerCourseConductionBy(String column,String value){
+
+			String courseGetByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+"=? ";
+			
+			try {
+				Connection conn=mysqlDataSource.getConnection();
+				PreparedStatement pstmt=conn.prepareStatement(courseGetByPstmt);
+				pstmt.setString(1, value);
+				ResultSet rs=pstmt.executeQuery();
+				List<CourseConduction> arr=new ArrayList<CourseConduction>();
+				while(rs.next()){
+					CourseConduction obj=new CourseConduction();
+					
+					obj.setLid(rs.getInt("LID"));
+					obj.setCid(rs.getInt("CID"));
+					
+					obj.setCcid(rs.getInt("CCID"));
+					obj.setSemester(rs.getString("SEMESTER"));
+
+					obj.setCapacity(rs.getInt("CAPACITY"));
+					arr.add(obj);
+				}
+				rs.close();
+				return arr.toArray(new CourseConduction[arr.size()]);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+			
+			
+		}
+		
+
+
+		public CourseConduction[] getLecturerCourseConductionBy(String column,int value){
+
+			String courseGetByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+"=? ";
+			
+			try {
+				Connection conn=mysqlDataSource.getConnection();
+				PreparedStatement pstmt=conn.prepareStatement(courseGetByPstmt);
+				pstmt.setInt(1, value);
+				ResultSet rs=pstmt.executeQuery();
+				List<CourseConduction> arr=new ArrayList<CourseConduction>();
+				while(rs.next()){
+					CourseConduction obj=new CourseConduction();
+					
+					obj.setLid(rs.getInt("LID"));
+					obj.setCid(rs.getInt("CID"));
+					
+					obj.setCcid(rs.getInt("CCID"));
+					obj.setSemester(rs.getString("SEMESTER"));
+
+					obj.setCapacity(rs.getInt("CAPACITY"));
+					arr.add(obj);
+				}
+				rs.close();
+				return arr.toArray(new CourseConduction[arr.size()]);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+			
+			
 		}
 		
 	

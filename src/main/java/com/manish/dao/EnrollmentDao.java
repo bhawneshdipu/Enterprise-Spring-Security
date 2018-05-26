@@ -213,5 +213,36 @@ public class EnrollmentDao {
 				return null;
 			}
 		}
+
+		public Enrollment[] findLecturerEnrollmentList(int lid){
+			String enrollmentFindLecturerByPstmt="SELECT * FROM "+tableName+" JOIN course_conduction using (cid) WHERE LID=? ";
+			
+			try {
+				Connection conn=mysqlDataSource.getConnection();
+				PreparedStatement pstmt=conn.prepareStatement(enrollmentFindLecturerByPstmt);
+				pstmt.setInt(1, lid);
+				ResultSet rs=pstmt.executeQuery();
+				
+				
+				List<Enrollment> arr=new ArrayList<Enrollment>();
+				while(rs.next()){
+					Enrollment obj=new Enrollment();
+					
+					obj.setEid(rs.getInt("EID"));
+					obj.setSid(rs.getInt("SID"));
+					
+					obj.setCid(rs.getInt("CID"));
+					obj.setSemester(rs.getString("SEMESTER"));
+					
+					arr.add(obj);
+				}
+			return arr.toArray(new Enrollment[arr.size()]);
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
 	
 }
+
