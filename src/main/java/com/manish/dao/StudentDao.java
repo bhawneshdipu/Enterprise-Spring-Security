@@ -193,5 +193,38 @@ public class StudentDao {
 			return null;
 		}
 	}
+	public Student getByEmail(String email) {
+		String studentByEmailPstmt="SELECT * FROM "+tableName+" WHERE EMAIL=? ";
+		
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(studentByEmailPstmt);
+			pstmt.setString(1, email);
+			ResultSet rs=pstmt.executeQuery();
+			
+			
+			while(rs.next()){
+				Student obj=new Student();
+				
+				obj.setSid(rs.getInt("SID"));
+				obj.setFname(rs.getString("FNAME"));
+				obj.setSurname(rs.getString("SURNAME"));
+				obj.setEmail(rs.getString("EMAIL"));
+				obj.setMajor(rs.getString("MAJOR"));
+				obj.setPassword(rs.getString("PASSWORD"));
+				
+				return obj;
+				
+			}
+			rs.close();
+			return null;
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	
 }

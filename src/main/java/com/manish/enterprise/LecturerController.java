@@ -15,7 +15,7 @@ import com.manish.dao.LecturerDao;
 import com.manish.dao.StudentDao;
 
 @Controller
-public class TeacherController {
+public class LecturerController {
 	
 	@Autowired
 	DataSource mysqlDataSource;

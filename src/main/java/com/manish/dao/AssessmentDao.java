@@ -163,6 +163,66 @@ public class AssessmentDao {
 				return -1;
 			}
 		}
-		
+		public Assessment[] findBy(String column,String value){
+			String assessmentFindByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+" = ?";
+			
+			try {
+				Connection conn=mysqlDataSource.getConnection();
+				PreparedStatement pstmt=conn.prepareStatement(assessmentFindByPstmt);
+				pstmt.setString(1, value);
+				ResultSet rs=pstmt.executeQuery();
+				List<Assessment> arr=new ArrayList<Assessment>();
+				while(rs.next()){
+					Assessment obj=new Assessment();
+					
+					obj.setAid(rs.getInt("AID"));
+					obj.setSid(rs.getInt("SID"));
+					
+					obj.setEid(rs.getInt("EID"));
+
+					obj.setA1(rs.getInt("A1"));
+					obj.setA2(rs.getInt("A2"));
+					arr.add(obj);
+				}
+				rs.close();
+				return arr.toArray(new Assessment[arr.size()]);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+			
+			
+		}
+		public Assessment[] findBy(String column,int value){
+			String assessmentFindByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+" = ?";
+			
+			try {
+				Connection conn=mysqlDataSource.getConnection();
+				PreparedStatement pstmt=conn.prepareStatement(assessmentFindByPstmt);
+				pstmt.setInt(1, value);
+				ResultSet rs=pstmt.executeQuery();
+				List<Assessment> arr=new ArrayList<Assessment>();
+				while(rs.next()){
+					Assessment obj=new Assessment();
+					
+					obj.setAid(rs.getInt("AID"));
+					obj.setSid(rs.getInt("SID"));
+					
+					obj.setEid(rs.getInt("EID"));
+
+					obj.setA1(rs.getInt("A1"));
+					obj.setA2(rs.getInt("A2"));
+					arr.add(obj);
+				}
+				rs.close();
+				return arr.toArray(new Assessment[arr.size()]);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+			
+		}
 	
 }

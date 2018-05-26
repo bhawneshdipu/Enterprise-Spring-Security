@@ -193,5 +193,35 @@ public class LecturerDao {
 		}
 	}
 	
+	public Lecturer getByEmail(String email) {
+		String lecturerByEmailPstmt="SELECT * FROM "+tableName+" WHERE EMAIL=? ";
+		
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(lecturerByEmailPstmt);
+			pstmt.setString(1, email);
+			ResultSet rs=pstmt.executeQuery();
+			
+			
+			while(rs.next()){
+				Lecturer obj=new Lecturer();
+				
+				obj.setLid(rs.getInt("LID"));
+				obj.setGname(rs.getString("GNAME"));
+				obj.setSurname(rs.getString("SURNAME"));
+				obj.setEmail(rs.getString("EMAIL"));
+				obj.setCampus(rs.getString("CAMPUS"));
+				obj.setPassword(rs.getString("PASSWORD"));
+				return obj;
+				
+			}
+			rs.close();
+			return null;
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }

@@ -70,6 +70,7 @@ public class CustomAuthenticationProvider
 		        authorities.add(new SimpleGrantedAuthority("LECTURER"));
 		        User user=new User(username, password, authorities);
 		        authorities=user.getAuthorities();
+		        
 		        return new UsernamePasswordAuthenticationToken(user, password, authorities);
 			}else {
 				throw new BadCredentialsException("Invalid Credentials");

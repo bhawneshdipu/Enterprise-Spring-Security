@@ -154,5 +154,64 @@ public class EnrollmentDao {
 			}
 		}
 		
+		public Enrollment[] findBy(String column,String value){
+			String enrollmentFindByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+" =? ";
+			
+			try {
+				Connection conn=mysqlDataSource.getConnection();
+				PreparedStatement pstmt=conn.prepareStatement(enrollmentFindByPstmt);
+				pstmt.setString(1, value);
+				ResultSet rs=pstmt.executeQuery();
+				
+				
+				List<Enrollment> arr=new ArrayList<Enrollment>();
+				while(rs.next()){
+					Enrollment obj=new Enrollment();
+					
+					obj.setEid(rs.getInt("EID"));
+					obj.setSid(rs.getInt("SID"));
+					
+					obj.setCid(rs.getInt("CID"));
+					obj.setSemester(rs.getString("SEMESTER"));
+					
+					arr.add(obj);
+				}
+			return arr.toArray(new Enrollment[arr.size()]);
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+	
+		public Enrollment[] findBy(String column,int value){
+			String enrollmentFindByPstmt="SELECT * FROM "+tableName+" WHERE "+column.toUpperCase()+" =? ";
+			
+			try {
+				Connection conn=mysqlDataSource.getConnection();
+				PreparedStatement pstmt=conn.prepareStatement(enrollmentFindByPstmt);
+				pstmt.setInt(1, value);
+				ResultSet rs=pstmt.executeQuery();
+				
+				
+				List<Enrollment> arr=new ArrayList<Enrollment>();
+				while(rs.next()){
+					Enrollment obj=new Enrollment();
+					
+					obj.setEid(rs.getInt("EID"));
+					obj.setSid(rs.getInt("SID"));
+					
+					obj.setCid(rs.getInt("CID"));
+					obj.setSemester(rs.getString("SEMESTER"));
+					
+					arr.add(obj);
+				}
+			return arr.toArray(new Enrollment[arr.size()]);
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
 	
 }

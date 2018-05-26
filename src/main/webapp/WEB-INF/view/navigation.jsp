@@ -1,10 +1,20 @@
+<%@ page isELIgnored="false" %>
+<%@ page session="true" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Manish </a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+     <c:if test="${sessionScope.role eq '[ADMIN]' }">
      <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Student
         <span class="caret"></span></a>
@@ -73,7 +83,35 @@
       </li>
 	
 	
+      </c:if>
+      
+      
 	<li><a href="/about-us">About US</a></li>
+    
+    <c:if test="${sessionScope.role eq '[STUDENT]' }">
+     <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Enroll
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/student/enroll/add">enroll</a></li>
+          <li><a href="/student/enrolls">List</a></li>
+        </ul>
+        
+      </li>
+	
+     <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assessment View
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/student/assessments">List</a></li>
+        </ul>
+        
+      </li>
+      </c:if>
+      
+    <c:if test="${sessionScope.role eq '[LECTURER]' }">
+     
+     </c:if>  
     </ul>
     <ul class="nav navbar-nav navbar-right">
 	 <li class="dropdown">
@@ -90,6 +128,8 @@
  <%}else{ %>
       <li><a href="#"><%=session.getAttribute("username") %></a></li>
       <li><a href="#"><%=session.getAttribute("role") %></a></li>
+      <li><a href="#"><%=session.getAttribute("student_id") %></a></li>
+ 
       <li><a href="/logout">Logout</a></li>
  
   <%} %>
