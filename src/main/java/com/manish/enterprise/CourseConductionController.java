@@ -51,7 +51,7 @@ public class CourseConductionController{
 	@Autowired
 	StudentDao studentDao;
 
-	/*----------------------------------------------------------------------------------------------*/
+	/*-------------------------------------------123---------------------------------------------------*/
 
 	@RequestMapping("/admin/course_conductions")	
 	String courseConductions(HttpServletRequest request) {

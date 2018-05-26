@@ -30,25 +30,28 @@
 		<table class="table table-responsive">
 		<thead>
 		    <tr>
-                <td>CA ID: </td>
+                <td>CC ID: </td>
                 <td>CID:</td>
-                <td>AID:</td>
+                <td>LID:</td>
                 <td>Semester:</td>
+                <td>Capacity:</td>
+                
                 <td>Action:</td>  
             </tr>
 		</thead>
 		
 		<tbody>
-		<c:forEach items="${sessionScope.courseAssessmentList}" var="courseAssessment">
+		<c:forEach items="${sessionScope.courseConductionList}" var="courseConduction">
             <tr>
-                <td><c:out value="${courseAssessment.caid}"/></td>
-                <td><c:out value="${courseAssessment.cid}"/></td>
-                <td><c:out value="${courseAssessment.aid}"/></td>
-                <td><c:out value="${courseAssessment.semester}"/></td>
+                <td><c:out value="${courseConduction.ccid}"/></td>
+                <td><c:out value="${courseConduction.cid}"/></td>
+                <td><c:out value="${courseConduction.lid}"/></td>
+                <td><c:out value="${courseConduction.semester}"/></td>
+                <td><c:out value="${courseConduction.capacity}"/></td>
                 
                 <td>
-	                <a class="btn btn-warning" href="/admin/course_assessment/edit/${courseAssessment.caid }">Edit</a>
-	                <a class="btn btn-danger" href="/admin/course_assessment/delete/${courseAssessment.caid }">Delete</a>
+	                <a class="btn btn-warning" href="/admin/course_conduction/edit/${courseConduction.ccid }">Edit</a>
+	                <a class="btn btn-danger" href="/admin/course_conduction/delete/${courseConduction.ccid }">Delete</a>
 	            </td>   
             </tr>
         </c:forEach>

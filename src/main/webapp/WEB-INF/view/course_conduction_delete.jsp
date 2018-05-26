@@ -18,11 +18,11 @@
 
 	<%@include file="navigation.jsp"%>
 
-	<h2 class="text-center">Course Assessment Delete</h2>
+	<h2 class="text-center">Course Conduction Delete</h2>
 
 
 	<div class='col-lg-8 col-md-offset-2'>
-		<form class="form-horizontal" action="/admin/course_assessment/delete/${ sessionScope.course_assessment.caid}"
+		<form class="form-horizontal" action="/admin/course_conduction/delete/${sessionScope.course_conduction.ccid }"
 			method="post">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="cid">Course
@@ -30,17 +30,17 @@
 				<div class="col-sm-10">
 					<select class="form-control" id="cid" name="cid">
 						<c:forEach var="course" items="${courseList}">
-							<option value="${course.cid}" ${course.cid == sessionScope.course_assessment.cid ? 'selected="selected"' : ''}>${course.title}</option>
+							<option value="${course.cid}" ${course.cid == sessionScope.course_conduction.cid ? 'selected="selected"' : ''}>${course.title}</option>
 						</c:forEach>
 					</select>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="assessment">Assessment:</label>
+				<label class="control-label col-sm-2" for="lecturer">Lecturer:</label>
 				<div class="col-sm-10">
-					<select class="form-control" id="aid" name="aid">
-						<c:forEach var="assessment" items="${assessmentList}">
-							<option value="${assessment.aid}" ${assessment.aid == sessionScope.course_assessment.aid ? 'selected="selected"' : ''}>${assessment.a1} ${assessment.a2}</option>
+					<select class="form-control" id="lid" name="lid">
+						<c:forEach var="lecturer" items="${lecturerList}">
+							<option value="${lecturer.lid}" ${lecturer.lid == sessionScope.course_conduction.lid ? 'selected="selected"' : ''}>${lecturer.gname } ${lecturer.surname}</option>
 						</c:forEach>
 					</select>
 
@@ -49,7 +49,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="semester">Semester:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="semester" name="semester" placeholder="Enter semester"  value="${sessionScope.course_assessment.semester }"/>
+					<input type="text" class="form-control" id="semester" name="semester" placeholder="Enter semester"  value="${sessionScope.course_conduction.semester }"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="capacity">Capacity:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="capacity" name="capacity" placeholder="Enter capacity"  value="${sessionScope.course_conduction.capacity }"/>
 				</div>
 			</div>
 

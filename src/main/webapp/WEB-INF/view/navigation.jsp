@@ -62,18 +62,39 @@
         </ul>
         
       </li>
+	 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Course Conduction
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/admin/course_conduction/add">Add</a></li>
+          <li><a href="/admin/course_conductions">List</a></li>
+        </ul>
+        
+      </li>
+	
 	
 	<li><a href="/about-us">About US</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-    
+	 <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+     
 <%if(session.getAttribute("username")==null || session.getAttribute("username").toString().length()==0){ %>
+	
+   
 	  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+ 
  <%}else{ %>
       <li><a href="#"><%=session.getAttribute("username") %></a></li>
       <li><a href="#"><%=session.getAttribute("role") %></a></li>
+      <li><a href="/logout">Logout</a></li>
+ 
   <%} %>
+ </ul>
+ </li>
     </ul>
   </div>
 </nav>

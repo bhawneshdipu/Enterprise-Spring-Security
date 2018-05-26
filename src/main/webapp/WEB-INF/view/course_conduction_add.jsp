@@ -18,11 +18,11 @@
 
 	<%@include file="navigation.jsp"%>
 
-	<h2 class="text-center">Course Assessment ADD</h2>
+	<h2 class="text-center">Course Conduction ADD</h2>
 
 
 	<div class='col-lg-8 col-md-offset-2'>
-		<form class="form-horizontal" action="/admin/course_assessment/add"
+		<form class="form-horizontal" action="/admin/course_conduction/add"
 			method="post">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="cid">Course
@@ -36,11 +36,11 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="assessment">Assessment:</label>
+				<label class="control-label col-sm-2" for="lecturer">Lecturer:</label>
 				<div class="col-sm-10">
-					<select class="form-control" id="aid" name="aid">
-						<c:forEach var="assessment" items="${sessionScope.assessmentList}">
-							<option value="${assessment.aid}">${assessment.a1} ${assessment.a2}</option>
+					<select class="form-control" id="lid" name="lid">
+						<c:forEach var="lecturer" items="${sessionScope.lecturerList}">
+							<option value="${lecturer.lid}">${lecturer.gname} ${lecturer.surname}</option>
 						</c:forEach>
 					</select>
 
@@ -51,6 +51,13 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="semester"
 						name="semester" placeholder="Enter semester" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="capacity">Capacity:</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" id="capacity"
+						name="capacity" placeholder="Enter capacity" />
 				</div>
 			</div>
 
