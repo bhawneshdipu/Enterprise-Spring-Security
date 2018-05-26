@@ -35,6 +35,8 @@ public class LecturerDao {
 	
 	public final String lecturerAllPstmt="SELECT * FROM "+tableName+" ";
 	
+	public final String lecturerLoginPstmt="SELECT * FROM "+tableName+" WHERE EMAIL=? AND PASSWORD=? ";
+	
 	
 	public int insert(Lecturer obj) {
 		try {
@@ -159,6 +161,35 @@ public class LecturerDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return -1;
+		}
+	}
+	public Lecturer login(String email,String password) {
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(lecturerLoginPstmt);
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			ResultSet rs=pstmt.executeQuery();
+			
+			
+			while(rs.next()){
+				Lecturer obj=new Lecturer();
+				
+				obj.setLid(rs.getInt("LID"));
+				obj.setGname(rs.getString("GNAME"));
+				obj.setSurname(rs.getString("SURNAME"));
+				obj.setEmail(rs.getString("EMAIL"));
+				obj.setCampus(rs.getString("CAMPUS"));
+				obj.setPassword(rs.getString("PASSWORD"));
+				return obj;
+				
+			}
+			rs.close();
+			return null;
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

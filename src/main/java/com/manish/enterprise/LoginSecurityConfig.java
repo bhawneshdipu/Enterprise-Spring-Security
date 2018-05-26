@@ -34,8 +34,9 @@ public class LoginSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/lecturer").hasAnyAuthority("ADMIN","LECTURER")
 				.antMatchers("/lecturer/**").hasAnyAuthority("ADMIN","LECTURER")
 				.and().formLogin().loginPage("/login")
-				.successHandler(customAuthenticationSuccessHandler).failureHandler(customAuthenticationFailureHandler)
+				.successHandler(customAuthenticationSuccessHandler).failureForwardUrl("/login?msg=Invalid Credentials")
 				.permitAll()
+				//failureHandler(customAuthenticationFailureHandler)
 				.usernameParameter("email").passwordParameter("password")
 				.and().logout().logoutSuccessUrl("/login?logout").permitAll();
 		

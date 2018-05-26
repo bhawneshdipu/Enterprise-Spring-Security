@@ -20,8 +20,9 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		// TODO Auto-generated method stub
+		request.setAttribute("login_message", "Invalid Credentials");
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-		response.sendRedirect("/login");
+		response.sendRedirect("/login?msg=Invalid Credentials");
 		return;
 		
 	}

@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.manish.model.Lecturer;
 import com.manish.model.Student;
 
 public class StudentDao {
@@ -34,6 +35,7 @@ public class StudentDao {
 	public final String studentDeletePstmt="DELETE  FROM "+tableName+" WHERE SID=? ";
 	
 	public final String studentAllPstmt="SELECT * FROM "+tableName+" ";
+	public final String studentLoginPstmt="SELECT * FROM "+tableName+" WHERE EMAIL=? AND PASSWORD=? ";
 	
 	
 	public int insert(Student obj) {
@@ -161,6 +163,35 @@ public class StudentDao {
 			return -1;
 		}
 	}
-	
+	public Student login(String email,String password) {
+		try {
+			Connection conn=mysqlDataSource.getConnection();
+			PreparedStatement pstmt=conn.prepareStatement(studentLoginPstmt);
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			ResultSet rs=pstmt.executeQuery();
+			
+			
+			while(rs.next()){
+				Student obj=new Student();
+				
+				obj.setSid(rs.getInt("SID"));
+				obj.setFname(rs.getString("FNAME"));
+				obj.setSurname(rs.getString("SURNAME"));
+				obj.setEmail(rs.getString("EMAIL"));
+				obj.setMajor(rs.getString("MAJOR"));
+				obj.setPassword(rs.getString("PASSWORD"));
+				
+				return obj;
+				
+			}
+			rs.close();
+			return null;
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }
